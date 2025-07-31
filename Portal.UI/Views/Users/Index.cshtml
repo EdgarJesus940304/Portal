@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+<h5>Tablero de usuarios</h5>
+
+<div class="container">
+    <div class="row" style="margin-top:20px; margin-bottom:20px;">
+        <div class="col-12 d-flex justify-content-end">
+            <button type="button" class="btn btn-primary" id="newUser"><i class="fa fa-plus"></i> Nuevo usuario</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table id="usersTable" style="width:100%" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th style="text-align:center;">Id usuario</th>
+                        <th style="text-align:center;">Nombre</th>
+                        <th style="text-align:center;">Fecha creación</th>
+                        <th style="text-align:center;">Usuario</th>
+                        @*<th style="text-align:center;">Contraseña</th>*@
+                        <th style="text-align:center;">Estatus</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+    </div>
+    
+</div>
+
+<div id="userModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    @Html.Partial("~/Views/Shared/modals/users/_UserModal.cshtml")
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/DataTables/datatables.min.js"></script>
+    <script src="~/Scripts/App/users.js"></script>
+}
+
