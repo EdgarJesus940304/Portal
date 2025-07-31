@@ -12,6 +12,41 @@
     //#region Acciones
 
     $("#login").on("click", function () {
+
+        Login();
+    });
+    $('#loginForm').on('submit', function (e) {
+        e.preventDefault();
+        Login();
+    });
+
+    //#endregion
+
+    //#region Validaciones
+    function Validate() {
+        if (IsNullOrUndefined(model.UserName)) {
+            Swal.fire({
+                title: '¡Error!',
+                text: "Favor de capturar usuario",
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+            return false;
+        }
+        if (IsNullOrUndefined(model.Password)) {
+            Swal.fire({
+                title: '¡Error!',
+                text: "Favor de capturar contraseña",
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+            return false;
+        }
+
+        return true;
+    }
+
+    function Login() {
         model.UserName = $("#userkey").val();
         model.Password = $("#userPassword").val();
         if (!Validate())
@@ -44,7 +79,7 @@
                         window.location.href = "/Users";
                     }
                 },
-                error: function (error) {   
+                error: function (error) {
                     Swal.close();
                     var errorMessage = error.responseJSON.Message || 'Ocurrió un error inesperado.';
                     Swal.fire({
@@ -55,32 +90,6 @@
                     });
                 }
             });
-
-    });
-    //#endregion
-
-    //#region Validaciones
-    function Validate() {
-        if (IsNullOrUndefined(model.UserName)) {
-            Swal.fire({
-                title: '¡Error!',
-                text: "Favor de capturar usuario",
-                icon: 'warning',
-                confirmButtonText: 'OK'
-            });
-            return false;
-        }
-        if (IsNullOrUndefined(model.Password)) {
-            Swal.fire({
-                title: '¡Error!',
-                text: "Favor de capturar contraseña",
-                icon: 'warning',
-                confirmButtonText: 'OK'
-            });
-            return false;
-        }
-
-        return true;
     }
     //#endregion
 
