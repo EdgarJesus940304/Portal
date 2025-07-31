@@ -19,11 +19,10 @@ namespace Portal.Business.WebService
                 WSClient objClient = new WSClient("WSPort");
                 var responseClient = objClient.ObtenerPDF(usuario, password, uuid);
 
-
                 if (!responseClient.Exitoso)
                 {
                     messageResponse.ResponseType = ResponseType.Error;
-                    messageResponse.Message = responseClient.MensajeError;
+                    messageResponse.Message = $"La petición respondió con un código de error {responseClient.CodigoError} {responseClient.MensajeError}";
                     messageResponse.Number = responseClient.CodigoError;
                 }
                 else
