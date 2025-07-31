@@ -18,7 +18,7 @@ namespace Portal.Business.Handler
             {
                 var service = new ApiBaseService<FilterDataTableModel>(ServiceParameters.ENDPOINT_USERS);
 
-                return await service.List<UserModel>(model);
+                return await service.ListData<UserModel>(model);
             }
             catch (Exception ex)
             {

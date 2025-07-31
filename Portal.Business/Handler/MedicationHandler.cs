@@ -18,7 +18,7 @@ namespace Portal.Business.Handler
             {
                 var service = new ApiBaseService<FilterDataTableModel>(ServiceParameters.ENDPOINT_MEDICATIONS);
 
-                return await service.List<MedicationModel>(model);
+                return await service.ListData<MedicationModel>(model);
             }
             catch (Exception ex)
             {
@@ -108,7 +108,7 @@ namespace Portal.Business.Handler
             {
                 var service = new ApiBaseService<PharmaceuticalFormModel>(ServiceParameters.ENDPOINT_MEDICATIONS);
 
-                return await service.List<PharmaceuticalFormModel>("pharmaceuticalForms");
+                return await service.ListCatalogs<PharmaceuticalFormModel>("pharmaceuticalForms");
             }
             catch (Exception ex)
             {

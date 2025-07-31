@@ -29,31 +29,6 @@ namespace Portal.Business.WebService
             _endpoint = endPoint;
         }
 
-        public async Task<RootResult<TResponse>> List<TResponse>(TRequest model)
-        {
-            try
-            {
-                string json = JsonConvert.SerializeObject(model);
-                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                HttpResponseMessage response = await _client.PostAsync($"{_endpoint}/list", content);
-                string respuestaJson = await response.Content.ReadAsStringAsync();
-
-
-                if (!response.IsSuccessStatusCode)
-                    throw new Exception($"Error API: {response.StatusCode}");
-
-                var responseJson = await response.Content.ReadAsStringAsync();
-
-                return JsonConvert.DeserializeObject<RootResult<TResponse>>(responseJson);
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener datos de la API: " + ex.Message, ex);
-            }
-        }
-
         public async Task<MessageResponse<TResponse>> Get<TResponse>(int id)
         {
             try
@@ -188,7 +163,33 @@ namespace Portal.Business.WebService
             }
         }
 
-        public async Task<RootResult<TResponse>> List<TResponse>(string catalogUrl)
+        #region Adicionales
+        public async Task<RootResult<TResponse>> ListData<TResponse>(TRequest model)
+        {
+            try
+            {
+                string json = JsonConvert.SerializeObject(model);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await _client.PostAsync($"{_endpoint}/list", content);
+                string respuestaJson = await response.Content.ReadAsStringAsync();
+
+
+                if (!response.IsSuccessStatusCode)
+                    throw new Exception($"Error API: {response.StatusCode}");
+
+                var responseJson = await response.Content.ReadAsStringAsync();
+
+                return JsonConvert.DeserializeObject<RootResult<TResponse>>(responseJson);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener datos de la API: " + ex.Message, ex);
+            }
+        }
+
+        public async Task<RootResult<TResponse>> ListCatalogs<TResponse>(string catalogUrl)
         {
             try
             {
@@ -244,5 +245,6 @@ namespace Portal.Business.WebService
                 };
             }
         }
+        #endregion
     }
 }
