@@ -69,7 +69,7 @@
                 Swal.close();
                 Swal.fire({
                     title: '¡Correcto!',
-                    text: "Se obtuvo correctamente el archivo",
+                    text: "Archivo procesado correctamente",
                     icon: 'success',
                     confirmButtonText: 'OK'
                 }).then((result) => {
