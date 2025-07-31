@@ -17,14 +17,10 @@ namespace Portal.UI.Utils
 
             JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
             HttpCookie cookie = filterContext.HttpContext.Request.Cookies.Get("Cookie_Session");
-            //HttpCookie cookie2 = filterContext.HttpContext.Request.Cookies.Get("returnUrl");
-
-
             if (string.IsNullOrWhiteSpace(cookie?.Value))
             {
                 if (filterContext.HttpContext.Request.Url.PathAndQuery.Contains("id"))
                 {
-                    //filterContext.Controller.ViewBag.RequestedUrl = filterContext.HttpContext.Request.RawUrl;
                     filterContext.HttpContext.Response.Cookies.Add(new HttpCookie("returnUrl", filterContext.HttpContext.Request.Url.PathAndQuery)
                     {
                         Expires = DateTime.Now.AddMinutes(3)

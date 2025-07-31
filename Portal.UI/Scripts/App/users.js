@@ -252,7 +252,8 @@
         $("#name").val("");
         $("#userName").val("");
         $("#password").val("");
-        $('#passwordError').val("");
+        $('#passwordError').text("");
+        $('#passwordError').hide();
         $('#status').prop('disabled', false);
         $('#name').prop('disabled', false);
         $('#userName').prop('disabled', false);

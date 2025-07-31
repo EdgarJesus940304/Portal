@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Portal.Business.Handler;
 using Portal.Business.Utils;
+using Portal.UI.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,6 +13,7 @@ using System.Web.Mvc;
 
 namespace Portal.UI.Controllers
 {
+    [LoginValidate]
     public class CFDIController : Controller
     {
         public ActionResult Index()

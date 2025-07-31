@@ -12,14 +12,28 @@
     //#region Acciones
 
     $("#login").on("click", function () {
-
         Login();
     });
     $('#loginForm').on('submit', function (e) {
         e.preventDefault();
         Login();
     });
-
+    $("#logOut").on("click", function () {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Se cerrará tu sesión.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, cerrar sesión',
+            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                LogOut();
+            }
+        });
+    });
     //#endregion
 
     //#region Validaciones
@@ -81,6 +95,36 @@
                 },
                 error: function (error) {
                     Swal.close();
+                    var errorMessage = error.responseJSON.Message || 'Ocurrió un error inesperado.';
+                    Swal.fire({
+                        title: '¡Error!',
+                        text: errorMessage,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            });
+    }
+
+    function LogOut() {
+        $.ajax('/Login/LogOut',
+            {
+                type: 'GET',
+                data: { userModel: model },
+                success: function (response) {
+                    if (response.Number == 200) {
+                        window.location.href = "/Login";
+                    } else {
+                        var errorMessage = response.responseJSON.Message || 'Ocurrió un error inesperado.';
+                        Swal.fire({
+                            title: '¡Error!',
+                            text: errorMessage,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                },
+                error: function (error) {                   
                     var errorMessage = error.responseJSON.Message || 'Ocurrió un error inesperado.';
                     Swal.fire({
                         title: '¡Error!',

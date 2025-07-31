@@ -17,8 +17,6 @@ namespace Portal.UI.Controllers
         {
             return View();
         }
-
-
         public async Task<ActionResult> Login(UserModel userModel)
         {
 
@@ -32,7 +30,6 @@ namespace Portal.UI.Controllers
 
                 var token = handler.CreateStringToken(LoggedUser?.Id.ToString(), LoggedUser.UserName);
 
-                HttpCookie redirectUrlCookie = Request.Cookies.Get("returnUrl");
                 HttpCookie cookie = new HttpCookie("Cookie_Session")
                 {
                     Value = token,
@@ -73,12 +70,12 @@ namespace Portal.UI.Controllers
         {
             try
             {
-                HttpCookie cookie = HttpContext.Request.Cookies.Get("returnUrl");
+                HttpCookie cookie = HttpContext.Request.Cookies.Get("Cookie_Session");
 
                 if (!string.IsNullOrWhiteSpace(cookie?.Value))
                 {
-                    cookie.Expires = DateTime.Now.AddSeconds(1);
-                    HttpContext.Request.Cookies.Add(cookie);
+                    cookie.Expires = DateTime.Now.AddDays(-1); // Fecha en el pasado
+                    HttpContext.Response.Cookies.Add(cookie);  // Reemplaza en la respuesta
                 }
 
                 MessageResponse response = new MessageResponse();

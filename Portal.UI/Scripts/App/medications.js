@@ -35,6 +35,10 @@
         SetCurrencyFormat(valor, $(this));
     });
 
+    $('#price').on('input', function () {
+        this.value = this.value.replace(/\D/g, '');
+    });
+
     //#region Tablero
     function GetMedications() {
         $('#medicationTable').DataTable({
