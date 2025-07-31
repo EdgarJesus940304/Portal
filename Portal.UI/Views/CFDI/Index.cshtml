@@ -3,30 +3,7 @@
     ViewBag.Title = "CFDI";
 }
 
-<style>
-    #drop-zone {
-        width: 800px;
-        height: 350px;
-        border: 2px dashed #333;
-        border-radius: 10px;
-        text-align: center;
-        line-height: 150px;
-        color: #aaa;
-        font-family: Arial, sans-serif;
-        margin: 20px auto;
-    }
-
-        #drop-zone.dragover {
-            border-color: #333;
-            color: #333;
-            background-color: #f0f0f0;
-        }
-
-    #file-input {
-        display: none;
-    }
-</style>
-
+<link href="~/Content/Dropzone/dropzone.css" rel="stylesheet" />
 <h5>Obtener PDF</h5>
 
 <div class="container">
@@ -39,14 +16,6 @@
             <input type="file" id="file-input" />
             <div id="status" style="margin-top: 10px;"></div>
         </div>
-    </div>
-    <div class="row">
-        @*<div class="col-sm-4 ">
-            <button id="quote_upload_submit" class="btn btn-primary">Confirmar</button>
-        </div>
-        <div class="col-sm-4 ">
-            <button id="quote_upload_clear" class="btn btn-success">Limpiar</button>
-        </div>*@
     </div>
 </div>
 
